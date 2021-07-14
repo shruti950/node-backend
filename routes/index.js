@@ -64,23 +64,14 @@ router.put(
   validate(userValidation.updateUser),
   async function (req, res) {
     const { userId } = req.params;
-    const { name, age, email } = req.body;
-    User.findByIdAndUpdate(
-      { _id: userId },
-      { $set: { name: name, age: age, email: email } },
-      function (err, data) {
-        if (data) {
-          User.find({ email: email }).then((data) => {
-            if (data) {
-              User.find({ email: email }).then((data) => {
-                return res.json(data);
-              });
-            }
-          });
-          // return res.json(data);
-        }
+    // const { name, age, email } = req.body;
+    User.findByIdAndUpdate(userId, { $set: req.body }, function (err, data) {
+      if (data) {
+        return res.json(data);
+
+        // return res.json(data);
       }
-    );
+    });
   }
 );
 
