@@ -30,5 +30,11 @@ const userValidation = {
       userId: Joi.string().required(),
     }),
   },
+  getUsers: {
+    query: Joi.object().keys({
+      page: Joi.number().default(1).required(),
+      limit: Joi.number().default(5).required(),
+    }),
+  },
 };
 module.exports = userValidation;
